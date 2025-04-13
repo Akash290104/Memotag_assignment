@@ -250,9 +250,9 @@ const App = () => {
             {solutions.map((step, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: idx * 0.2 }}
+                transition={{ duration: 0.8}}
                 className="p-6 text-center shadow-xl rounded-2xl bg-white dark:bg-gray-800 hover:shadow-indigo-200 dark:hover:shadow-indigo-500/20 transition duration-300"
               >
                 <motion.div
