@@ -8,9 +8,10 @@ dotenv.config();
 const app = express();
 
 const CLIENT_URL = process.env.CLIENT_URL_PROD 
+const LOCAL_URL = process.env.CLIENT_URL_DEV
 
 const corsOptions = {
-  origin: CLIENT_URL,
+  origin: [CLIENT_URL, LOCAL_URL],
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
