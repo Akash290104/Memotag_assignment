@@ -35,7 +35,7 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
 
-  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const BASE_URL =a import.meta.env.VITE_API_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
