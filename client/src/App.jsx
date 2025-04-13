@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Button } from "../src/components/ui/button";
 import { motion } from "framer-motion";
@@ -65,43 +64,55 @@ const App = () => {
     }
   };
 
- const solutions =[
-  {
-    topic: "Wearable Tracker",
-    desc: "Continuously monitors movement, sleep, and vital signs to detect early cognitive decline.",
-    icon: (
-      <Activity className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
-    ),
-  },
-  {
-    topic: "AI Cognitive Analysis",
-    desc: "Processes user data using advanced algorithms to identify unusual patterns linked to dementia.",
-    icon: (
-      <Brain className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
-    ),
-  },
-  {
-    topic: "Real-time Alerts",
-    desc: "Notifies caregivers instantly about concerning trends or behaviors for prompt response.",
-    icon: (
-      <BellRing className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
-    ),
-  },
-]
+  const solutions = [
+    {
+      topic: "Wearable Tracker",
+      desc: "Continuously monitors movement, sleep, and vital signs to detect early cognitive decline.",
+      icon: (
+        <Activity className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
+      ),
+    },
+    {
+      topic: "AI Cognitive Analysis",
+      desc: "Processes user data using advanced algorithms to identify unusual patterns linked to dementia.",
+      icon: (
+        <Brain className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
+      ),
+    },
+    {
+      topic: "Real-time Alerts",
+      desc: "Notifies caregivers instantly about concerning trends or behaviors for prompt response.",
+      icon: (
+        <BellRing className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
+      ),
+    },
+  ];
 
   const tractions = [
     {
-      icon:  <FontAwesomeIcon icon={faCartArrowDown} className="text-4xl text-blue-500" />,
+      icon: (
+        <FontAwesomeIcon
+          icon={faCartArrowDown}
+          className="text-4xl text-blue-500"
+        />
+      ),
       topic: "10,000+ Preorders",
       desc: "We’ve received over 10,000 preorders, showing strong market interest.",
     },
     {
-      icon: <FontAwesomeIcon icon={faUsers} className="text-4xl text-green-500" />,
+      icon: (
+        <FontAwesomeIcon icon={faUsers} className="text-4xl text-green-500" />
+      ),
       topic: "Impacting 5,000+ Families",
       desc: "MemoTag is currently helping over 5,000 families with dementia care.",
     },
     {
-      icon: <FontAwesomeIcon icon={faHandshake} className="text-4xl text-purple-500" />,
+      icon: (
+        <FontAwesomeIcon
+          icon={faHandshake}
+          className="text-4xl text-purple-500"
+        />
+      ),
       topic: "Partnerships with 20+ Hospitals",
       desc: " We’ve established partnerships with over 20 hospitals to improve dementia care.",
     },
@@ -109,7 +120,7 @@ const App = () => {
 
   return (
     <main className="font-sans bg-white text-black dark:bg-black dark:text-white transition-colors duration-500">
-       {/* Dark Mode Toggle  */}
+      {/* Dark Mode Toggle  */}
       <div className="fixed top-4 right-4 z-50">
         <Button variant="ghost" onClick={() => setIsDark(!isDark)}>
           {isDark ? <Sun /> : <Moon />}
@@ -118,41 +129,40 @@ const App = () => {
 
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 py-16 bg-gradient-to-b from-white to-blue-500 dark:from-gray-900 dark:to-gray-800">
-      
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 text-gray-800 dark:text-white"
-          >
-            Smarter Dementia Care with AI
-          </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 text-gray-800 dark:text-white"
+        >
+          Smarter Dementia Care with AI
+        </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-2xl max-w-2xl mb-6 text-gray-600 dark:text-gray-300"
-          >
-            Empowering caregivers with AI-driven insights for better
-            cognitive and physical care.
-          </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-2xl max-w-2xl mb-6 text-gray-600 dark:text-gray-300"
+        >
+          Empowering caregivers with AI-driven insights for better cognitive and
+          physical care.
+        </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <Button
+            className="text-lg px-8 py-4 shadow-md rounded-xl"
+            onClick={() => {
+              const section = document.getElementById("cta");
+              section?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
-            <Button
-              className="text-lg px-8 py-4 shadow-md rounded-xl"
-              onClick={() => {
-                const section = document.getElementById("cta");
-                section?.scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              Join the Waitlist
-            </Button>
-          </motion.div>
+            Join the Waitlist
+          </Button>
+        </motion.div>
       </section>
 
       {/* Problem Section */}
@@ -268,8 +278,7 @@ const App = () => {
       {/* Traction Section */}
       <section className="py-20 px-6 bg-indigo-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 dark:text-white mb-12"
-          >
+          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 dark:text-white mb-12">
             Our Impact So Far
           </h2>
 
@@ -300,8 +309,11 @@ const App = () => {
         </div>
       </section>
 
-      <ToastContainer position="top-right" autoClose={3000} pauseOnHover={false}
-      pauseOnFocusLoss={false}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
       />
 
       {/* CTA Section */}
@@ -348,7 +360,7 @@ const App = () => {
 
       <section className="py-20 px-6 bg-orange-100 text-gray-800 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-12 text-white">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-12 text-black dark:text-white">
             Loved by Caregivers
           </h2>
 

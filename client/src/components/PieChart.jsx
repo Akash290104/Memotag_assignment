@@ -14,7 +14,7 @@ const PieChart = () => {
         data: [60, 40], // Assuming 60% undiagnosed
         backgroundColor: ["#f87171", "#34d399"], // Red and green
         borderWidth: 5,
-        hoverOffset: 20,
+        hoverOffset: 18,
       },
     ],
   };
@@ -38,8 +38,11 @@ const PieChart = () => {
     },
   };
 
-  return    <Pie data={data} options={options} />
-
+  return (
+    <div className="h-full w-full">
+      <Pie data={data} options={options} />
+    </div>
+  );
 };
 
 export default PieChart;

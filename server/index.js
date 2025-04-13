@@ -88,5 +88,5 @@ app.post("/api/waitlist", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
+  console.log(`Server is running at port ${PORT}`);  
 });
