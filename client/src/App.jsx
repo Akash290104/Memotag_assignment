@@ -1,9 +1,6 @@
-// Project: MemoTag Explainer Site
-// Tech: ReactJS + TailwindCSS + Shadcn/UI + Supabase (for waitlist) + Dark Mode
 
 import React, { useEffect, useState } from "react";
 import { Button } from "../src/components/ui/button";
-import { Card } from "../src/components/ui/card";
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import PieChart from "./components/PieChart";
@@ -12,6 +9,12 @@ import { Activity, Brain, BellRing } from "lucide-react";
 import dementiaCare from "../src/components/dementia_care.png";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCartArrowDown,
+  faUsers,
+  faHandshake,
+} from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
   const [isDark, setIsDark] = useState(
@@ -62,9 +65,51 @@ const App = () => {
     }
   };
 
+ const solutions =[
+  {
+    topic: "Wearable Tracker",
+    desc: "Continuously monitors movement, sleep, and vital signs to detect early cognitive decline.",
+    icon: (
+      <Activity className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
+    ),
+  },
+  {
+    topic: "AI Cognitive Analysis",
+    desc: "Processes user data using advanced algorithms to identify unusual patterns linked to dementia.",
+    icon: (
+      <Brain className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
+    ),
+  },
+  {
+    topic: "Real-time Alerts",
+    desc: "Notifies caregivers instantly about concerning trends or behaviors for prompt response.",
+    icon: (
+      <BellRing className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
+    ),
+  },
+]
+
+  const tractions = [
+    {
+      icon:  <FontAwesomeIcon icon={faCartArrowDown} className="text-4xl text-blue-500" />,
+      topic: "10,000+ Preorders",
+      desc: "We’ve received over 10,000 preorders, showing strong market interest.",
+    },
+    {
+      icon: <FontAwesomeIcon icon={faUsers} className="text-4xl text-green-500" />,
+      topic: "Impacting 5,000+ Families",
+      desc: "MemoTag is currently helping over 5,000 families with dementia care.",
+    },
+    {
+      icon: <FontAwesomeIcon icon={faHandshake} className="text-4xl text-purple-500" />,
+      topic: "Partnerships with 20+ Hospitals",
+      desc: " We’ve established partnerships with over 20 hospitals to improve dementia care.",
+    },
+  ];
+
   return (
     <main className="font-sans bg-white text-black dark:bg-black dark:text-white transition-colors duration-500">
-      {/* Dark Mode Toggle */}
+       {/* Dark Mode Toggle  */}
       <div className="fixed top-4 right-4 z-50">
         <Button variant="ghost" onClick={() => setIsDark(!isDark)}>
           {isDark ? <Sun /> : <Moon />}
@@ -72,19 +117,15 @@ const App = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 -z-10 min-h-screen w-full hidden dark:block [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-
-        {/* Hero Content */}
-        <div className="h-screen flex flex-col justify-center items-center text-center px-6 text-neutral-300">
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 py-16 bg-gradient-to-b from-white to-blue-500 dark:from-gray-900 dark:to-gray-800">
+      
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 text-gray-800 dark:text-white"
           >
-            AI for Dementia Care
+            Smarter Dementia Care with AI
           </motion.h1>
 
           <motion.p
@@ -93,7 +134,7 @@ const App = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-lg md:text-2xl max-w-2xl mb-6 text-gray-600 dark:text-gray-300"
           >
-            MemoTag empowers caregivers with AI-driven insights for better
+            Empowering caregivers with AI-driven insights for better
             cognitive and physical care.
           </motion.p>
 
@@ -112,17 +153,15 @@ const App = () => {
               Join the Waitlist
             </Button>
           </motion.div>
-        </div>
       </section>
 
       {/* Problem Section */}
-      <section className="py-20 bg-gray-100 dark:bg-gray-900 px-6">
+      <section className="py-20  bg-emerald-100 dark:bg-gray-900 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            // viewport={{ once: true }}
             className="text-3xl md:text-5xl font-semibold mb-6"
           >
             The Dementia Diagnosis Crisis
@@ -132,7 +171,6 @@ const App = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            // viewport={{ once: true }}
             className="text-lg md:text-xl mb-12 max-w-3xl mx-auto"
           >
             Millions are living with dementia, but most go undiagnosed.
@@ -141,26 +179,22 @@ const App = () => {
           </motion.p>
 
           <div className="flex flex-col md:flex-row gap-10 items-center justify-center">
-            {/* Pie Chart Placeholder */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              // viewport={{ once: true }}
               className="w-full md:w-1/2"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+              <div className="bg-pink-300 dark:bg-gray-800 rounded-xl shadow-lg p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">
                   Diagnosis Gap Breakdown
                 </h3>
-                {/* Replace below div with your actual Pie Chart component */}
-                <div className="h-[400px] w-full md:w-[500px] flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 rounded-lg mx-auto">
+                <div className=" h-[400px] w-full md:w-[400px] flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 rounded-lg mx-auto">
                   <PieChart />
                 </div>
               </div>
             </motion.div>
 
-            {/* Stats Grid */}
             <div className="grid md:grid-cols-1 gap-8 w-full md:w-1/2">
               {[
                 {
@@ -181,8 +215,7 @@ const App = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  // viewport={{ once: true }}
-                  className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6"
+                  className="bg-blue-300 dark:bg-gray-800 shadow-lg rounded-xl p-6"
                 >
                   <h3 className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">
                     {item.stat}
@@ -198,40 +231,17 @@ const App = () => {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-yellow-50 dark:bg-slate-700">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-semibold text-center mb-12 text-gray-800 dark:text-white">
             How MemoTag Works
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                topic: "Wearable Tracker",
-                desc: "Continuously monitors movement, sleep, and vital signs to detect early cognitive decline.",
-                icon: (
-                  <Activity className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
-                ),
-              },
-              {
-                topic: "AI Cognitive Analysis",
-                desc: "Processes user data using advanced algorithms to identify unusual patterns linked to dementia.",
-                icon: (
-                  <Brain className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
-                ),
-              },
-              {
-                topic: "Real-time Alerts",
-                desc: "Notifies caregivers instantly about concerning trends or behaviors for prompt response.",
-                icon: (
-                  <BellRing className="w-12 h-12 mx-auto text-indigo-600 dark:text-indigo-400 mb-4" />
-                ),
-              },
-            ].map((step, idx) => (
+            {solutions.map((step, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                // viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.2 }}
                 className="p-6 text-center shadow-xl rounded-2xl bg-white dark:bg-gray-800 hover:shadow-indigo-200 dark:hover:shadow-indigo-500/20 transition duration-300"
               >
@@ -256,82 +266,56 @@ const App = () => {
       </section>
 
       {/* Traction Section */}
-      <section className="py-20 px-6 bg-gray-50 dark:bg-gray-800">
+      <section className="py-20 px-6 bg-indigo-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 dark:text-white mb-12">
+          <h2 className="text-3xl md:text-5xl font-semibold text-gray-800 dark:text-white mb-12"
+          >
             Our Impact So Far
           </h2>
 
           {/* Traction Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1: Preorders */}
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg">
-              <div className="flex items-center justify-center mb-4">
-                <i className="fas fa-cart-arrow-down text-4xl text-blue-500"></i>{" "}
-                {/* Preorder Icon */}
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
-                10,000+ Preorders
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                We’ve received over 10,000 preorders, showing strong market
-                interest.
-              </p>
-            </div>
-
-            {/* Card 2: Impact */}
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg">
-              <div className="flex items-center justify-center mb-4">
-                <i className="fas fa-users text-4xl text-green-500"></i>{" "}
-                {/* Impact Icon */}
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
-                Impacting 5,000+ Families
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                MemoTag is currently helping over 5,000 families with dementia
-                care.
-              </p>
-            </div>
-
-            {/* Card 3: Partnerships */}
-            <div className="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg">
-              <div className="flex items-center justify-center mb-4">
-                <i className="fas fa-handshake text-4xl text-yellow-500"></i>{" "}
-                {/* Partnership Icon */}
-              </div>
-              <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
-                Partnerships with 20+ Hospitals
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                We’ve established partnerships with over 20 hospitals to improve
-                dementia care.
-              </p>
-            </div>
+            {tractions.map((t) => (
+              <motion.div
+                className="p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <i className="fas fa-cart-arrow-down text-4xl text-blue-500">
+                    {t.icon}
+                  </i>
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+                  {t.topic}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">{t.desc}</p>
+              </motion.div>
+            ))}
           </div>
-
-          {/* Optional CTA Button */}
           <div className="mt-12">
             <Button className="text-lg px-8 py-4">Learn More</Button>
           </div>
         </div>
       </section>
 
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={3000} pauseOnHover={false}
+      pauseOnFocusLoss={false}
+      />
 
       {/* CTA Section */}
-      <section id="cta" className="py-20 px-6 bg-white dark:bg-gray-900">
+      <section id="cta" className="py-20 px-6 bg-pink-50 dark:bg-gray-950">
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12">
-          {/* Text + Form */}
           <div className="md:w-1/2 text-center md:text-left">
             <h2 className="text-3xl text-center md:text-4xl font-semibold text-gray-800 dark:text-white mb-4">
               Help Us Shape the Future of Care
             </h2>
 
             <div className="flex items-center justify-center">
-              <Button className="text-lg  mb-6 px-8 py-4 bg-yellow-500 text-white rounded-full hover:bg-yellow-400 transition-all duration-300">
-                Join the Waitlist
-              </Button>
+              <h6 className="text-lg  mb-6 px-8 py-4 bg-yellow-500 text-white rounded-xl hover:bg-yellow-400 transition-all duration-300">
+                Join the Waitlist!
+              </h6>
             </div>
             <form
               className="space-y-4 flex flex-col"
@@ -350,7 +334,6 @@ const App = () => {
             </form>
           </div>
 
-          {/* Image */}
           <div className="md:w-1/2">
             <img
               src={dementiaCare}
@@ -361,15 +344,15 @@ const App = () => {
         </div>
       </section>
 
-      {/* Optional: Testimonials or Badges */}
+      {/* Testimonials  */}
 
-      <section className="py-20 px-6 bg-gray-100 dark:bg-gray-900">
+      <section className="py-20 px-6 bg-orange-100 text-gray-800 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-12 text-white">
             Loved by Caregivers
           </h2>
 
-          <div className="flex  justify-center gap-8">
+          <div className="grid items-center grid-cols-1 md:grid-cols-3 gap-8 ">
             {[
               {
                 name: "Maria R.",
@@ -389,7 +372,7 @@ const App = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.2 }}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full max-w-sm"
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 w-full max-w-sm mx-auto"
               >
                 <img
                   src={photo}
