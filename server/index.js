@@ -7,8 +7,10 @@ dotenv.config();
 
 const app = express();
 
+const CLIENT_URL = process.env.NODE_ENV === "production" ? process.env.CLIENT_URL_PROD : process.env.CLIENT_URL_DEV ;
+
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: CLIENT_URL,
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
