@@ -250,9 +250,9 @@ const App = () => {
             {solutions.map((step, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8}}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1}}
+                transition={{ duration: 1, ease: "easeOut" }}
                 className="p-6 text-center shadow-xl rounded-2xl bg-white dark:bg-gray-800 hover:shadow-indigo-200 dark:hover:shadow-indigo-500/20 transition duration-300"
               >
                 <motion.div
@@ -291,15 +291,20 @@ const App = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <div className="flex items-center justify-center mb-4">
-                  <i className="fas fa-cart-arrow-down text-4xl text-blue-500">
-                    {t.icon}
-                  </i>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
-                  {t.topic}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">{t.desc}</p>
+                <motion.div
+                  className="p-6 text-center"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <div className="flex items-center justify-center mb-4">
+                    <i className="fas fa-cart-arrow-down text-4xl text-blue-500">
+                      {t.icon}
+                    </i>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+                    {t.topic}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">{t.desc}</p>
+                </motion.div>
               </motion.div>
             ))}
           </div>
