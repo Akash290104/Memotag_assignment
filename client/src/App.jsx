@@ -14,6 +14,7 @@ import {
   faUsers,
   faHandshake,
 } from "@fortawesome/free-solid-svg-icons";
+import { ClipLoader } from "react-spinners";
 
 const App = () => {
   const [isDark, setIsDark] = useState(
@@ -36,9 +37,13 @@ const App = () => {
 
   const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Hi");
+
+    setLoading(true);
 
     try {
       const response = await axios.post(`${BASE_URL}/api/waitlist`, {
@@ -61,6 +66,7 @@ const App = () => {
       }
     } finally {
       setEmail("");
+      setLoading(false);
     }
   };
 
@@ -120,6 +126,11 @@ const App = () => {
 
   return (
     <main className="font-sans bg-white text-black dark:bg-black dark:text-white transition-colors duration-500">
+      {loading && (
+        <div className="w-full h-[200px] bg-white fixed inset-0 spinner-container flex  justify-center  ">
+          <ClipLoader color="#36D7B7" size={70} />
+        </div>
+      )}
       {/* Dark Mode Toggle  */}
       <div className="fixed top-4 right-4 z-50">
         <Button variant="ghost" onClick={() => setIsDark(!isDark)}>
@@ -200,7 +211,7 @@ const App = () => {
                   Diagnosis Gap Breakdown
                 </h3>
                 <div className=" h-[400px] w-full md:w-[400px] flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 rounded-lg mx-auto">
-                  <PieChart isDark={isDark}/>
+                  <PieChart isDark={isDark} />
                 </div>
               </div>
             </motion.div>
@@ -251,7 +262,7 @@ const App = () => {
               <motion.div
                 key={idx}
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1}}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="p-6 text-center shadow-xl rounded-2xl bg-white dark:bg-gray-800 hover:shadow-indigo-200 dark:hover:shadow-indigo-500/20 transition duration-300"
               >

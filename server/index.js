@@ -8,10 +8,10 @@ dotenv.config();
 const app = express();
 
 const CLIENT_URL = process.env.CLIENT_URL_PROD 
-const LOCAL_URL = process.env.CLIENT_URL_DEV
+
 
 const corsOptions = {
-  origin: [CLIENT_URL, LOCAL_URL],
+  origin: [CLIENT_URL, "http://localhost:5173"],
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -30,7 +30,7 @@ const supabase = createClient(
 app.post("/api/waitlist", async (req, res) => {
   try {
     const { email } = req.body;
-
+  
     if (!email) {
       console.log("Email not provided");
 
@@ -88,5 +88,7 @@ app.post("/api/waitlist", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);  
+
+  console.log(`Server is running at port ${PORT}`); 
+   
 });
