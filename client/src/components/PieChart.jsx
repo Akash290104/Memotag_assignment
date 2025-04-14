@@ -2,10 +2,11 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import { color } from "framer-motion";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-const PieChart = () => {
+const PieChart = ({ isDark }) => {
   const data = {
     labels: ["Undiagnosed Dementia", "Diagnosed Dementia"],
     datasets: [
@@ -23,13 +24,19 @@ const PieChart = () => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { position: "top" },
+      legend: {
+        position: "top",
+        labels: {
+          color: isDark ? "#fff" : "#353333",
+        },
+      },
       title: {
         display: true,
         text: "60% of Annual Dementia Cases Go Undiagnosed",
         font: {
           size: 18,
         },
+        color: isDark ? "#fff" : "#484545",
       },
     },
     animation: {

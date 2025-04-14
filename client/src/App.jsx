@@ -200,7 +200,7 @@ const App = () => {
                   Diagnosis Gap Breakdown
                 </h3>
                 <div className=" h-[400px] w-full md:w-[400px] flex items-center justify-center border border-dashed border-gray-300 dark:border-gray-600 rounded-lg mx-auto">
-                  <PieChart />
+                  <PieChart isDark={isDark}/>
                 </div>
               </div>
             </motion.div>
